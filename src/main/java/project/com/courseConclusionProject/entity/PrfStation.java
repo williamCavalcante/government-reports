@@ -1,23 +1,55 @@
-package project.com.courseConclusionProject.dto;
+package project.com.courseConclusionProject.entity;
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class PrfStationDto {
-
+@Entity
+@Table(name = "prf_concessionaires")
+public class PrfStation {
+    @Id
+    @Column(name = "prf_station_id")
     private UUID id;
+
+    @Column(name = "concessionaria")
     private String concessionaire;
+
+    @Column(name = "nome_posto_prf")
     private String PrfStationName;
+
+    @Column(name = "rodovia")
     private String highWay;
+
+    @Column(name = "uf")
     private String uf;
+
+    @Column(name = "km_M")
     private BigDecimal kmM;
+
+    @Column(name = "municipio")
     private String county;
+
+    @Column(name = "tipo_pista")
     private String trackType;
+
+    @Column(name = "sentido")
     private String direction;
+
+    @Column(name = "situacao")
     private String situation;
+
+    @Column(name = "latitude")
     private BigDecimal latitude;
+
+    @Column(name = "longitude")
     private BigDecimal longitude;
 
+    // getters and setters
     public UUID getId() {
         return id;
     }
@@ -114,3 +146,4 @@ public class PrfStationDto {
         this.longitude = longitude;
     }
 }
+

@@ -2,7 +2,8 @@ package project.com.courseConclusionProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import project.com.courseConclusionProject.dto.PrfStationDto;
+import project.com.courseConclusionProject.entity.PrfRadar;
+import project.com.courseConclusionProject.entity.PrfStation;
 import project.com.courseConclusionProject.service.PrfService;
 
 import java.util.List;
@@ -15,29 +16,14 @@ public class PrfController {
     @Autowired
     private PrfService prfService;
 
-    @GetMapping
-    public List<PrfStationDto> getAll() {
-        return prfService.getAll();
+    @GetMapping("/search")
+    public List<PrfStation> getByUfAndMunicipio(@RequestParam String uf, @RequestParam String municipio) {
+        return prfService.getByUfAndMunicipio(uf, municipio);
     }
 
-    @GetMapping("/{id}")
-    public PrfStationDto getById(@PathVariable Long id) {
-        return prfService.getById(id);
-    }
-
-    @PostMapping
-    public PrfStationDto create(@RequestBody PrfStationDto prfStationDto) {
-        return prfService.create(prfStationDto);
-    }
-
-    @PutMapping("/{id}")
-    public PrfStationDto update(@PathVariable Long id, @RequestBody PrfStationDto prfStationDto) {
-        return prfService.update(id, prfStationDto);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        prfService.delete(id);
+    @GetMapping("/radar")
+    public List<PrfRadar> getRadarByUfAndMunicipio(@RequestParam String uf, @RequestParam String municipio) {
+        return prfService.getRadarByUfAndMunicipio(uf, municipio);
     }
 }
 
