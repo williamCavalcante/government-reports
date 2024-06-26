@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
-RUN apt-get isntall gradle -y
+RUN apt-get install gradle -y
 RUN gradle clean build
 
 FROM openjdk:17-jdk-slim
