@@ -1,16 +1,16 @@
-FROM ubuntu:latest AS build
+FROM gradle:8.8-jdk17-alpine AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
+WORKDIR /app
+
 COPY . .
 
-RUN apt-get install gradle -y
-RUN ./gradlew clean build
+RUN gradle build
+
 
 FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build build/libs/will-0.0.1-SNAPSHOT-plain.jar repo
+COPY --from=build /app/build/libs/will-0.0.1-SNAPSHOT.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "reports.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
