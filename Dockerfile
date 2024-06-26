@@ -11,6 +11,6 @@ FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
-COPY --from= build build/libs/will-0.0.1-SNAPSHOT-plain.jar reports.jar
+COPY --from=build build/libs/will-0.0.1-SNAPSHOT-plain.jar repo
 
 ENTRYPOINT ["java", "-jar", "reports.jar"]
